@@ -13,7 +13,6 @@ build:
 
 deploy:
   stage: deploy
-  image:
-    name: alpine
+  image: registry.evercity.io/sta/kubectl
   script:
     - "curl -X POST -F token=699a24c6411ebf536adc97624e744e -F ref=master -F variables[COMMIT_SHORT_SHA]=$CI_COMMIT_SHORT_SHA https://lab.evercity.io/api/v4/projects/10/trigger/pipeline"
