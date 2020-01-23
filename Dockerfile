@@ -7,8 +7,8 @@ LABEL authors="Albert Iblyaminov <ai@evercity.io>" \
       org.label-schema.url="https://evercity.io" \
       org.label-schema.schema-version="1.0"
 
-WORKDIR /var/www/html/wp-content/themes/
-COPY ./themes /var/www/html/wp-content/themes/
-COPY ./plugins /var/www/html/wp-content/plugins/
+#WORKDIR /var/www/html/wp-content/themes/
+#COPY ./themes /var/www/html/wp-content/themes/
+#COPY ./plugins /var/www/html/wp-content/plugins/
 
 EXPOSE 8080
