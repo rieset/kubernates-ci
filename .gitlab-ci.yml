@@ -1,5 +1,6 @@
-include:
-  - remote: 'https://lab.evercity.io/server/evercity-site/raw/master/.gitlab-ci.yml?private_token=skNNGntw48Dct8mp36sP'
+stages:
+  - build
+  - deploy
 
 build:
   stage: build
@@ -8,3 +9,8 @@ build:
   script:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_JOB_TOKEN\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor --context $CI_PROJECT_DIR --destination $CI_REGISTRY_IMAGE:latest
+
+deploy:
+  stage: deploy
+  script:
+    - "curl -X POST -F token=699a24c6411ebf536adc97624e744e -F ref=master -F variables[COMMIT_SHORT_SHA]=$CI_COMMIT_SHORT_SHA https://lab.evercity.io/api/v4/projects/10/trigger/pipeline"
